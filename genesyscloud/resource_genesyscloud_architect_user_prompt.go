@@ -840,7 +840,10 @@ func readUserPrompt(ctx context.Context, d *schema.ResourceData, meta interface{
 		}
 
 		d.Set("name", *userPrompt.Name)
-		d.Set("description", *userPrompt.Description)
+		d.Set("description", nil)
+		if userPrompt.Description != nil {
+			d.Set("description", *userPrompt.Description)
+		}
 
 		if userPrompt.Name != nil {
 			d.Set("name", *userPrompt.Name)
